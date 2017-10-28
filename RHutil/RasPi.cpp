@@ -108,7 +108,7 @@ unsigned char digitalRead(unsigned char pin) {
   return bcm2835_gpio_lev(pin);
 }
 
-unsigned long millis()
+unsigned long milliseconds()
 {
   //Declare a variable to store current time
   struct timeval RHCurrentTime;

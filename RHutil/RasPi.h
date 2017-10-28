@@ -81,7 +81,7 @@ void digitalWrite(unsigned char pin, unsigned char value);
 
 unsigned char digitalRead(unsigned char pin) ;
 
-unsigned long millis();
+unsigned long milliseconds();
 
 void delay (unsigned long delay);
 

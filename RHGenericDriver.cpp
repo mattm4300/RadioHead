@@ -37,8 +37,8 @@ void RHGenericDriver::waitAvailable()
 // Works correctly even on millis() rollover
 bool RHGenericDriver::waitAvailableTimeout(uint16_t timeout)
 {
-    unsigned long starttime = millis();
-    while ((millis() - starttime) < timeout)
+    unsigned long starttime = milliseconds();
+    while ((milliseconds() - starttime) < timeout)
     {
         if (available())
 	{
@@ -58,8 +58,8 @@ bool RHGenericDriver::waitPacketSent()
 
 bool RHGenericDriver::waitPacketSent(uint16_t timeout)
 {
-    unsigned long starttime = millis();
-    while ((millis() - starttime) < timeout)
+    unsigned long starttime = milliseconds();
+    while ((milliseconds() - starttime) < timeout)
     {
         if (_mode != RHModeTx) // Any previous transmit finished?
            return true;
@@ -79,10 +79,10 @@ bool RHGenericDriver::waitCAD()
     // DCF : BackoffTime = random() x aSlotTime
     // 100 - 1000 ms
     // 10 sec timeout
-    unsigned long t = millis();
+    unsigned long t = milliseconds();
     while (isChannelActive())
     {
-         if (millis() - t > _cad_timeout) 
+         if (milliseconds() - t > _cad_timeout) 
 	     return false;
          delay(random(1, 10) * 100); // Should these values be configurable? Macros?
     }
