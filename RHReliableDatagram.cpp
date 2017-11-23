@@ -63,7 +63,7 @@ bool RHReliableDatagram::sendtoWait(uint8_t* buf, uint8_t len, uint8_t address)
 
 	if (retries > 1)
 	    _retransmissions++;
-	unsigned long thisSendTime = millis(); // Timeout does not include original transmit time
+	unsigned long thisSendTime = milliseconds(); // Timeout does not include original transmit time
 
 	// Compute a new timeout, random between _timeout and _timeout*2
 	// This is to prevent collisions on every retransmit
@@ -74,7 +74,7 @@ bool RHReliableDatagram::sendtoWait(uint8_t* buf, uint8_t len, uint8_t address)
 	uint16_t timeout = _timeout + (_timeout * random(0, 256) / 256);
 #endif
 	int32_t timeLeft;
-        while ((timeLeft = timeout - (millis() - thisSendTime)) > 0)
+        while ((timeLeft = timeout - (milliseconds() - thisSendTime)) > 0)
 	{
 	    if (waitAvailableTimeout(timeLeft))
 	    {
@@ -148,9 +148,9 @@ bool RHReliableDatagram::recvfromAck(uint8_t* buf, uint8_t* len, uint8_t* from, 
 
 bool RHReliableDatagram::recvfromAckTimeout(uint8_t* buf, uint8_t* len, uint16_t timeout, uint8_t* from, uint8_t* to, uint8_t* id, uint8_t* flags)
 {
-    unsigned long starttime = millis();
+    unsigned long starttime = milliseconds();
     int32_t timeLeft;
-    while ((timeLeft = timeout - (millis() - starttime)) > 0)
+    while ((timeLeft = timeout - (milliseconds() - starttime)) > 0)
     {
 	if (waitAvailableTimeout(timeLeft))
 	{
